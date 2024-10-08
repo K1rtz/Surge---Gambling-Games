@@ -1,0 +1,1023 @@
+/*Ugradjeni elementi*/
+*{
+    box-sizing: border-box;
+
+}
+body{
+    margin: 0;
+    padding: 0;
+    /* background-color: rgb(23, 30, 41); */
+    background-color: #1a2c38;
+    
+}
+
+header{
+    position: fixed;
+    width: 100%;
+    background-color: #0f212e;
+    margin: 0;
+    padding: 0;
+    height: 70px;
+    /* background-color: rgb(28, 39, 56); */
+    border-bottom: 5px solid rgb(56, 60, 66);
+    /* border-bottom: 5px solid rgb(56, 60, 66); */
+}
+.headHolder{
+    max-width: 1200px;
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.walletHolder{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    /* margin-left: 40%; */
+    color: white;
+    max-height: 50px;
+    border-radius: 25px;
+}
+.walletAmount{
+    border-radius: 5px 0 0 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;    
+    background-color: #171e29;
+}
+.walletName{
+    border-radius: 0 5px 5px 0;
+    padding: 10px;
+
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;    
+
+
+    background-color: #148cff;
+}
+
+
+.logo{
+    /* margin-left: 2.5rem; */
+    margin-top: 5px;
+}
+/*body*/
+.mBody{
+    padding-top: 70px;
+    width:80%;
+    margin: 0 auto;
+    background-color: (23, 30, 41);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* height: 1000px; */
+
+}
+
+/*Slider*/
+
+.slider{
+    /* width:100%; */
+    margin-top: 22px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1300px;
+    width: 101%;
+    position: relative;
+    /* display: flex; */
+    /* align-content: center; */
+
+    
+    align-items: center;
+}
+
+.sliderWrapper{
+    display: grid;
+    grid-auto-flow: column;
+    /* grid-auto-columns: calc((100% / 3) - 12px); */
+    grid-auto-columns: calc((100% / 3) - 8px);
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: 0;
+    /* background-color: aquamarine; */
+}
+.sliderWrapper::-webkit-scrollbar {
+    display: none;
+    
+}
+.slide{
+    scroll-snap-align: start;
+    height: 340px;
+    list-style: none;
+    background: rgb(40, 49, 64);
+    border-radius: 8px;
+    display: flex;
+    cursor: pointer;
+    width: 98%;
+    padding-bottom: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    aspect-ratio: 4 / 2; /* Omjer širine i visine, možeš podesiti po želji */
+    height: auto; /* Automatski određuje visinu na osnovu omjera */
+}
+.txt{
+    background-color: aliceblue;
+    width: 100px;
+    height: 100%;
+}
+/* Test */
+
+.slideL{
+    height: 90%;
+    color: white;
+    width: 50%;
+}
+
+.slideLI{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+}
+.slideLI *{
+    margin-bottom: 4%;
+}
+
+.slideLI1I{
+    font-family:monospace;
+    color: rgb(0, 0, 0);
+    display: inline-flex;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    font-weight: 550;
+    align-items: center;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: 5%;
+    font-size: 14px;
+}
+
+.slideLI2{
+    font-size: 24px;
+    font-weight: 700;
+}
+.slideLI4{
+    margin-top: auto;
+}
+.slide .sButton
+{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    color: white;
+    background-color: rgb(28, 39, 56);
+}
+.slider:hover > .showable {
+    display: block; 
+}
+.btn{
+    border: none;
+    color: grey;
+    font-weight: 800;
+    font-size: 26px;
+    height: 40px;
+    width: 30px;
+    /* background: rgb(14, 23, 50); */
+    background-color: transparent;
+    display: none;
+    border-radius: 20%;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    font-size: 1.25 rem;
+    transform: translateY(-50%);
+}
+.buttonLeft{
+    left: -28px;
+
+
+
+}
+.buttonRight{
+    right: -28px;
+
+
+
+}
+.slideR{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slide .img {
+    /* width: 145px; */
+    /* height: 145px; */
+    height: 70%;
+    width: 70%;
+    border-radius: 15%;
+    border: 5px solid rgb(82, 78, 78);
+
+}
+
+/* Search bar */
+.searchBarHolder{
+    width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .sliderWrapper {
+        grid-auto-columns: calc((100% / 2) - 9px);
+
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .sliderWrapper {
+        grid-auto-columns: 100%;
+
+    }
+}
+
+
+
+.formHolder{
+    background-color: #213743;
+    box-sizing: border-box;
+    min-width: 300px;
+    width: 300px;
+    display: flex;
+    border-radius: 12px 0px 0px 0px;
+}
+.form{
+    width: 300px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px; 
+    gap: .75rem;
+    display: flex;
+    flex-direction: column;
+    max-height: 630px;
+    /* width: 100%;
+    height: 100%; */
+}
+
+.bHolder{
+    box-sizing: border-box;
+    border-radius: 9999px;
+    height: 50px;
+    width: 100%; 
+    display: flex;
+    flex-direction: row;
+    background-color: #0f212e;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.plinkoButtons{
+    box-sizing: border-box;
+
+    border: none;
+    color: white;
+    border-radius: 9999px;
+    width: 47%;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    font-weight: 700;
+}
+.bManual{
+    margin-left: 6px;
+}
+.bAuto{
+    margin-right: 6px;
+}
+.hovColor{
+    background-color: #2f4553;
+
+}
+.plinkoButtons:hover {
+    background-color: #2f4553;
+
+}
+
+/* Bet amount */
+.betAmountHolder{
+    display: flex;
+    flex-direction: column;
+
+}
+.betAmountText{
+    padding-left: 1%;
+    font-weight: 700;
+    color: #a8bad3;
+}
+.betAmountInput{
+    border-radius: .25rem;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    height: 40px;
+    /* padding: 1.5%; */
+    border: 2px solid rgb(47, 69, 83);
+    background-color: rgb(47, 69, 83);
+
+}
+.amountInput{
+    color: white;
+    padding-left: 8px;
+    border: none;
+    font-weight: 600;
+
+    outline: none;
+    box-shadow: none;
+    flex:5;
+    background-color: #0f212e;
+}
+.betAmountInput .btni{
+    flex: 1;
+    font-weight: 700;
+    color:white;
+    background-color: rgb(47, 69, 83);
+    border: none;
+}
+.betAmountInput .bHalf{
+    font-size: 18px;
+    border-right: 1px solid wheat;
+}
+.betAmountInput .bDouble{
+    font-size: 14px;
+}
+
+.riskInput{
+    color: white;
+    border-radius: .25rem;
+    font-weight: 600;
+    height: 40px;
+    width: 100%;
+    line-height: 1.5;
+    padding: 0.5rem;
+    background-color: #0f212e;
+    border: 2px solid #2f4553;
+    font-size: .875rem;
+    padding: 4px;
+}
+
+
+
+.option{
+    font-weight: 700;
+    
+}
+/* Number of bets */
+
+.numberOfBetsHolder{
+    display: none;
+    flex-direction: column;
+}
+.numberOfBetsInput{
+    color: white;
+    border-radius: .25rem;
+    font-weight: 600;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    background-color: #0f212e;
+    border: 2px solid #2f4553;
+    font-size: .875rem;
+    padding: 4px;
+}
+
+/* Button bet */
+.buttonBox{
+width: 100%;
+}
+.buttonBet{
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    /* background-color: #00e701; */
+    background-color: #00c100;
+    border: 3px solid green;
+    width: 100%;
+    padding-top: 1.125rem;
+    padding-bottom: 1.125rem;
+    padding-top: 1.125rem;
+    padding-bottom: 1.125rem;
+    gap: 0.5rem;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+}
+.buttonBet:hover{
+    background-color: #00e701;
+    border: 3px solid rgb(3, 146, 3);
+    transform: translateY(-1px);
+
+}
+/*DISPALY GAME PART*/
+.fullGame{
+    /* margin-top: 2.5rem; */
+
+    margin: 2.5rem auto 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    width: 100%;
+    background-color: #213743;
+    /* aspect-ratio: 1200/680; */
+    border-radius: 15px;
+}
+.gameBody{
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    flex-direction: row;
+    max-width: 1300px;
+    max-height: 630px;
+    background-color: #0f212e;
+}
+
+.gameFoot{
+    display: flex;
+    min-width: 200px;
+    min-height: 60px;
+    margin-top: 3px;
+    background-color: #0f212e;
+    border-radius: 0 0 15px 15px;
+}
+
+.display *{
+    /* border: 1px solid red; */
+}
+
+/* main display element */
+.display{
+    max-width: 900px;
+    max-height: 630px;
+    height: auto;/*?????????????*/
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* element indisde display that holds next 2*/
+.displayInner{
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+
+    
+}
+ /* element iniside displayInner that holds canvas */
+.displayInnerCanvasHolder{
+ 
+}
+
+/* element inside displayInnerCanvasHolder */
+.kanvas{
+    height: auto;
+    max-width: 100%; /* Sprečava prelazak izvan okvira */
+    max-height: 100%;
+    margin-top: 1rem;
+
+    /* max-width: 720px;
+    max-height: 540px; */
+}
+/* element inside displayInner that holds rectangles */
+.displayInnerRectanglesHolder{
+    /* min-height: 40px;
+    width: auto;
+    max-width: 100%; 
+    max-height: 100%;
+     */
+     height: 1.8em;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     margin-bottom: 2rem;
+}
+
+.displayInnerRectangles{
+    width: 85%;
+    display: grid;
+    grid-gap: 1%;
+    height: 100%;
+    position: relative;
+
+}
+
+.z{
+    background: rgb(255, 0, 63);
+    --shadow-color: #a60004;
+    grid-row: 1;
+    position: relative;
+    /* cursor: help; */
+    border-radius: 0.3em;
+    text-align: center;
+    /* animation-duration: .3s!important; */
+    /* animation-timing-function: cubic-bezier(.18,.89,.32,1.28); */
+    box-shadow: 0 0.2em 0 0 var(#a60004);
+    /* animation: slideDown 0.5s ease-in-out; */
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+.s{
+    /* font-family: Arial, sans-serif; */
+    /* font-family:'Times New Roman', Times, serif; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-weight: 700; */
+    font-weight: 500;
+    font-size: 0.8em;
+}
+.animation{
+    animation: slideDown 0.2s ease-in-out;
+}
+@keyframes slideDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(15px); }
+    100% { transform: translateY(0); }
+}
+
+.descriptionHolder{
+    margin: 2.5rem auto 0;
+    max-width: 1200px;
+    background-color: #0f212e;
+    border-radius: 25px;
+    display: flex;
+
+}
+
+
+.cover{
+    padding: 20px;
+    width: 250px;
+    min-width: 250px;
+    max-height: 310px;
+    border-radius: 35px;
+}
+
+.textToTheRight{
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    max-width: 760px;
+    font-size: 18px;
+    padding-right: 10px;
+
+}
+.text0{
+    color: lightgrey;
+    padding-top: 5%;
+    font-weight: 600;
+}
+.text1{
+    color: grey;
+    padding-top: 2%;
+    /* font-size: 20px; */
+}
+.text2{
+    color: grey;
+    padding-top: 10px;
+    /* font-size: 20px; */
+}
+
+/* awdawddaw */
+.gameSliderHolder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1300px;
+    width: 100%;
+    padding-top: 40px;
+}
+
+.gameSlider{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
+    gap: 10px; 
+    grid-auto-columns: calc((100% / 8) - 8px);
+    gap: 8px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: 0;
+}
+.gameSlider::-webkit-scrollbar {
+    display: none;
+    
+}
+.frontCover{
+    width: 150px;
+    min-width: 150px;
+    max-height: 310px;
+    border-radius: 10px;
+}
+.game1{
+    /* width: fit-content;
+    display: inline-block; */
+}
+
+.display2{
+    max-width: 900px;
+    max-height: 630px;
+    height: auto;/*?????????????*/
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;;
+    padding: 10px;
+}
+
+
+
+
+
+.minesHolder{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 kolona */
+    gap: 12px;
+    width: 100%;
+    max-width: 600px;
+    margin: 10px;
+    /* margin-bottom: 10px;
+    margin-top: 10px; */
+}
+
+.mineHolder{
+    border-radius: .5rem;
+    position: relative;
+    width: 100%; 
+    padding-top: 100%; /* Obezbeđuje kvadratni oblik */
+    background-color: #0f1e364b;
+    /* overflow: hidden; */
+    overflow: visible;
+}
+
+
+
+.mineButton, .mineImage{
+    position: absolute;  /* Apsolutno pozicioniranje */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.mineButton{
+    background-color: #1b384b;
+    border: none;
+    border-radius: .5rem;
+    z-index: 2;
+    box-shadow: 0 5px 0px #25455a;
+}
+.mineButton:hover{
+    background-color: #235f87;
+    transform: translateY(-3px);    
+}
+.mineImage{
+    /* background-image: url('ruby.png');  */
+    background-size: cover;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.mineImage.end{
+    opacity:0.7;
+    transform: scale(0.6);
+}
+.mineButton.end{
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.mineButton.animating {
+    transform: scale(1.1); /* Povećanje dugmeta */
+}
+  
+.mineButton.hidden {
+opacity: 0; /* Nestani dugme */
+transform: scale(0); /* Smanji ka centru */
+}
+
+.mineImage.visible{
+    opacity:1;
+    transform: scale(1);
+}
+
+.mineImage.animating{
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+
+
+.totalProfitDisplayHolder{
+
+    display: flex;
+    flex-direction: column;
+    /* box-sizing: border-box; */
+    /* height: 40px; */
+    /* padding: 1.5%; */
+    display: none;
+    
+}
+.totalProfitText{
+    font-weight: 600;
+    color: #a8bad3;
+}
+
+.totalProfitDisplay{
+    height: 40px;
+    border-radius: .25rem;
+    color: white;
+    padding-left: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    outline: none;
+
+    box-shadow: none;
+    /* flex:5; */
+    background-color: #0f212e;
+    display: flex;
+    align-items: center;
+    border: 2px solid rgb(47, 69, 83);
+    /* background-color: rgb(47, 69, 83); */
+}
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.buttonPickRandom{
+    display: none;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    /* background-color: #00e701; */
+    background-color: #c346d4;
+    border: 3px solid rgb(112, 45, 112);
+    width: 100%;
+    padding-top: 1.125rem;
+    padding-bottom: 1.125rem;
+    padding-top: 1.125rem;
+    padding-bottom: 1.125rem;
+    gap: 0.5rem;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.buttonPickRandom:hover{
+    background-color: #d85cdc;
+    border: 3px solid rgb(140, 58, 140);
+    transform: translateY(-1px);
+
+}
+
+.gameBodyKeno{
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    flex-direction: row;
+    max-width: 1300px;
+    max-height: 650px;
+    background-color: #0f212e;
+}
+
+.display3{
+    max-width: 900px;
+    max-height: 650px;
+    height: auto;/*?????????????*/
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;;
+    padding: 10px;
+}
+
+
+
+.displayLower1, .displayLower2{
+    max-width: 600;
+    width: 100%;
+    height: 50px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #1b384b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.displayLower1{
+    background-color: #0f212e;
+}
+
+.dl1{
+    flex: 1;  /* Svaki child zauzima jednak deo */
+    margin: 0.5%;  /* Razmak između child elemenata */
+    height: 100%;
+    /* font-size: 0.1vw; */
+    background-color: #1b384b;
+}
+
+.dl2{
+    display: flex;
+    /* margin: 0.5%; */
+    
+    height: 100%;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.dl2.lighten{
+    background-color: #366482;
+
+}
+
+.dl2Txt{
+    color: white;
+    margin-right: 0.2vw;
+}
+
+.lowerDlHolder{
+    display: flex;
+    object-fit: contain;
+
+}
+.dlImg{
+    max-width: 26px;
+    object-fit: contain;
+    opacity: 30%;
+    transition: transform 0.2s ease;
+}
+.dlImg.scale{
+    transform: scale(1.2);
+}
+
+.displayLower2 .dl1{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.displayLower1 .dl1{
+    font-size: 1vw;
+    border-radius: 5px;
+
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kenoTilesHolder{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* 5 kolona */
+    gap: 12px;
+    width: 100%;
+    max-width: 780px;
+    margin: 10px;
+}
+.kenoTileHolder{
+    border-radius: .5rem;
+    position: relative;
+    width: 100%; 
+    /* padding-top: 100%; Obezbeđuje kvadratni oblik */
+    aspect-ratio: 1/1;
+    background-color: #0812224b;
+    overflow: visible;
+    box-sizing: border-box; /* Obezbeđuje da se border uračuna u dimenzije */
+/* Tranzicija za širinu bordera */
+    transition: border-width 0.1s ease, font-size .5s ease-in-out;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    font-size: 0px;
+    font-weight: 600;
+    /* transition: font-size 1s  ease-in-out; */
+}
+
+.kenoTileHolder.borderadd{
+    border: 6px solid rgb(210, 67, 162);
+}
+
+.increaseFont{
+    font-size: 1.3vw;
+    /* opacity: .5; */
+}
+
+.kenoTileButton{
+    position: absolute;  /* Apsolutno pozicioniranje */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+    background-color: #1b384b;
+    border: none;
+    border-radius: .5rem;
+    z-index: 2;
+    box-shadow: 0 5px 0px #25455a;
+
+    
+    color: white;
+    font-size: 1.5vw;
+    font-weight: 600;
+}
+
+.kenoTileButton:hover{
+    background-color: #235f87;
+    transform: translateY(-3px);    
+}
+.kenoTileButtonSelected{
+    background-color: rgb(210, 67, 162);
+    box-shadow: 0 5px 0px rgb(126, 41, 97)
+
+}
+.kenoTileButtonSelected:hover{
+    background-color: rgb(201, 49, 150);
+
+}
+
+.kenoTileButton.animating {
+    transform: scale(1.1); /* Povećanje dugmeta */
+}
+.kenoTileButton.hidden {
+    opacity: 0; /* Nestani dugme */
+    transform: scale(0); /* Smanji ka centru */
+}
+
+.kenoTileImage{
+    position: absolute;  /* Apsolutno pozicioniranje */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    background-size: cover;
+    opacity: 0;
+    transform: scale(0);
+}
+.kenoTileImage.visible{
+    opacity:1;
+    transform: scale(0.9) 
+}
+
+.kenoTileImage.animating{
+    opacity: 1;
+    transform: scale(1) rotate(30deg);
+}
+
+.kenoButtonAutoSelect{
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    /* background-color: #00e701; */
+    background-color: #22313b;
+    border: 3px solid #172229;
+    width: 100%;
+    padding-top: 1.125rem;
+    padding-bottom: 1.125rem;
+    padding-top: 1.125rem;
+    padding-bottom: 1.125rem;
+    gap: 0.5rem;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
