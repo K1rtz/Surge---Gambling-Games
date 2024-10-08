@@ -57,6 +57,7 @@ export class Keno{
 
         this.multipliers = [];
         this.mines = [];
+        this.parent = parent;
 
         this.buttonSound = new Audio('./kenoButtonClick1.mp3')
     }
@@ -126,7 +127,7 @@ export class Keno{
         form.appendChild(betAmountHolder);
 
 
-        //Mines
+
 
         const riskHolder = document.createElement('div');
         const riskText = document.createElement('div')
@@ -280,7 +281,7 @@ export class Keno{
 
             let kenoTileImage = document.createElement('img')
             kenoTileImage.classList.add('kenoTileImage');
-            kenoTileImage.src = "./sak.png"
+            kenoTileImage.src = "./star2.png"
             kenoTileHolder.appendChild(kenoTileImage);
 
             let kenoTileButton = document.createElement('button');
@@ -317,12 +318,10 @@ export class Keno{
 
 
                 }
-                console.log(this.selected.length);
                 if(this.selected.length == 10){
                     this.changeOpacity(0);
                     console.log("pozvana metoda changeopacity")
                 }
-                console.log(this.selected);
             }
         }
 
@@ -340,7 +339,6 @@ export class Keno{
 
     changeOpacity(val){
         let notSelected = this.tiles.filter(e => !this.selected.find(s => s.button == e.button));
-        console.log(notSelected)
         if(val == 0){
             notSelected.forEach(e=> e.button.style.opacity='.5');
         }
@@ -368,14 +366,13 @@ export class Keno{
         let lower = this.cont.querySelector(".displayLower2")
         
         if(op == 'add' && this.selected.length < 10){
-            console.log('DODAJEM')
             let u = document.createElement('div');
             u.classList.add('dl1')
             upper.appendChild(u);
             
             
             let u2 = document.createElement('img');
-            u2.src = "./sak.png"
+            u2.src = "./star2.png"//sak
             u2.classList.add('dlImg')
             
             
@@ -397,7 +394,6 @@ export class Keno{
                 e.innerHTML = payout.toFixed(1);
             })
             this.count++;
-            console.log(this.count)
 
         }else if(op == 'remove'){
             upper.childNodes.forEach((e, index) => {
@@ -450,11 +446,11 @@ export class Keno{
         lower.replaceChildren();
         this.count = 0;
     }
+    
 
 
 
     autoSelect(){
-        console.log(this.selected.length);
         
         if(this.selected.length == 10){
              this.selected.forEach(m => {
@@ -484,12 +480,44 @@ export class Keno{
 
     initiateNewGame(){
 
+        this.selected.forEach(m => {
+            m.button.classList.remove('hidden');
+            m.img.classList.remove('visible');
+            m.img.classList.remove('end');
+            m.button.classList.remove('end')
+        })
+
+        this.randomPicked.forEach(m=>{
+            m.button.parentNode.classList.remove("borderadd");
+            m.button.classList.remove('hidden');
+            m.img.classList.remove('visible');
+            m.button.parentNode.classList.remove("increaseFont")
+        })
+        this.randomPicked.length = 0;
+        this.numberOfHits = 0;
+        this.count = 0;
+        this.reloadLower();
+
+        let amountInput = this.cont.querySelector(".amountInput").value;
+        this.betAmount = parseFloat(amountInput).toFixed(2);
+        this.parent.balance -= this.betAmount;
+
+
+
 
         this.buttonState(true);
 
         this.openTiles().then(() => {
             this.buttonState(false);
+            setTimeout(()=>{
 
+                
+                console.log(this.numberOfHits);
+                console.log(this.selected.length-1)
+                let payout = (this.numberOfHits/this.selected.length) * Keno.Low[this.numberOfHits][this.selected.length-1]
+                console.log(payout);
+                this.parent.balance += payout;
+            },600)
         });
 
 
@@ -637,9 +665,7 @@ export class Keno{
                     rnd = Math.floor(Math.random() * 40);
                 }
                 while(this.selected.find(obj => obj.button === this.tiles[rnd].button));
-            
-                console.log(this.selected);
-    
+                
                 let kenoTileButton = this.tiles[rnd].button;
 
                 kenoTileButton.click();

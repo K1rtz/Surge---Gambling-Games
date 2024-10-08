@@ -410,7 +410,7 @@ width: 100%;
     font-size: 14px;
     /* background-color: #00e701; */
     background-color: #00c100;
-    border: 3px solid green;
+    border: 3px solid rgb(2, 144, 2);
     width: 100%;
     padding-top: 1.125rem;
     padding-bottom: 1.125rem;
@@ -422,7 +422,7 @@ width: 100%;
 }
 .buttonBet:hover{
     background-color: #00e701;
-    border: 3px solid rgb(3, 146, 3);
+    border: 3px solid rgb(3, 161, 3);
     transform: translateY(-1px);
 
 }
@@ -881,7 +881,7 @@ input[type="number"]::-webkit-inner-spin-button {
     transition: transform 0.2s ease;
 }
 .dlImg.scale{
-    transform: scale(1.2);
+    transform: scale(1.3);
 }
 
 .displayLower2 .dl1{
@@ -913,6 +913,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .kenoTileHolder{
     border-radius: .5rem;
+    
     position: relative;
     width: 100%; 
     /* padding-top: 100%; Obezbeđuje kvadratni oblik */
@@ -926,18 +927,26 @@ input[type="number"]::-webkit-inner-spin-button {
     text-align: center;
     align-items: center;
     justify-content: center;
-    color: red;
+    color: rgb(70, 60, 60);
     font-size: 0px;
     font-weight: 600;
     /* transition: font-size 1s  ease-in-out; */
 }
 
 .kenoTileHolder.borderadd{
-    border: 6px solid rgb(210, 67, 162);
+    /* border: 2px solid red; */
+    /* border-radius: 12px; */
+    /* background: radial-gradient(circle, rgb(111, 102, 102), rgb(180, 157, 182), rgb(255, 150, 241)); */
+    /* outline: 2px solid transparent; */
+     
+
+    /* background-color: pink; */
+    
+
 }
 
 .increaseFont{
-    font-size: 1.3vw;
+    font-size: 1.5vw;
     /* opacity: .5; */
 }
 
@@ -965,12 +974,12 @@ input[type="number"]::-webkit-inner-spin-button {
     transform: translateY(-3px);    
 }
 .kenoTileButtonSelected{
-    background-color: rgb(210, 67, 162);
-    box-shadow: 0 5px 0px rgb(126, 41, 97)
+    background-color: #cfb234;
+    box-shadow: 0 5px 0px #7f6a13;
 
 }
 .kenoTileButtonSelected:hover{
-    background-color: rgb(201, 49, 150);
+    background-color: #f4d652;
 
 }
 
@@ -995,7 +1004,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .kenoTileImage.visible{
     opacity:1;
-    transform: scale(0.9) 
+    transform: scale(1.35);
 }
 
 .kenoTileImage.animating{
@@ -1011,7 +1020,7 @@ input[type="number"]::-webkit-inner-spin-button {
     font-weight: 600;
     font-size: 14px;
     /* background-color: #00e701; */
-    background-color: #22313b;
+    background-color: #294b62;
     border: 3px solid #172229;
     width: 100%;
     padding-top: 1.125rem;
@@ -1020,4 +1029,12 @@ input[type="number"]::-webkit-inner-spin-button {
     padding-bottom: 1.125rem;
     gap: 0.5rem;
     transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.kenoButtonAutoSelect:hover{
+
+    background-color: #355f7c;
+    border: 3px solid #23323c;
+    transform: translateY(-1px);
+    
+    
 }
