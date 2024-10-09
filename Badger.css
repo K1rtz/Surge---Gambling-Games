@@ -422,7 +422,7 @@ width: 100%;
 }
 .buttonBet:hover{
     background-color: #00e701;
-    border: 3px solid rgb(3, 161, 3);
+    border: 3px solid rgb(3, 191, 3);
     transform: translateY(-1px);
 
 }

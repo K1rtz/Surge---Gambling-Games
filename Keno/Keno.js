@@ -2,16 +2,16 @@ export class Keno{
 
     static Low = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        ['z', 5, 2, 1, 0, 0, 0, 0, 0, 0],
-        ['z', 'z', 11, 5, 3, 2, 1, 1, 0, 0],
-        ['z', 'z', 'z', 20, 10, 5, 2, 2, 1, 0],
-        ['z', 'z', 'z', 'z', 40, 35, 22, 10, 5, 5],
-        ['z', 'z', 'z', 'z', 'z', 100, 85, 40, 40, 25],
-        ['z', 'z', 'z', 'z', 'z', 'z', 250, 150, 100, 120],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 500, 400, 200],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 750, 450],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 1000]
+        [1.9, 0.2, 0.1, 0, 0, 0, 0, 0, 0, 0],
+        ['z', 3, 2.4, 1.2, 1, 1, 0.8, 0, 0, 0.5],
+        ['z', 'z', 11, 5, 4, 3, 2, 1.5, 1, 2],
+        ['z', 'z', 'z', 20, 10, 5, 2, 2, 1.5, 5],
+        ['z', 'z', 'z', 'z', 40, 35, 22, 10, 5, 10],
+        ['z', 'z', 'z', 'z', 'z', 100, 85, 40, 40, 20],
+        ['z', 'z', 'z', 'z', 'z', 'z', 250, 150, 100, 30],
+        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 500, 400, 40],
+        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 750, 50],
+        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 100]
     ]
     static Medium = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -221,13 +221,12 @@ export class Keno{
 
 
 
-        
 
         kenoButtonAutoSelect.onclick = (ev) =>{
             this.clearTable()
             setTimeout(()=>{
                 this.autoSelect()
-            },300)
+            },100)
         }
 
         kenoButtonClear.onclick = (ev) =>{
@@ -309,7 +308,7 @@ export class Keno{
                     }
 
                     self.updateBars(0);
-
+                    
                     let index = this.selected.findIndex(e => e.button === kenoTileButton && e.img === kenoTileImage);
                     if (index !== -1) {
                         this.selected.splice(index, 1);
@@ -390,20 +389,29 @@ export class Keno{
             lower.appendChild(x);
             
             upper.childNodes.forEach((e, index) => {
-                let payout = (index / this.count) * Keno.Low[index][upper.childNodes.length - 2];
+                let payout = (index / (this.selected.length+1)) * Keno.Low[index][this.selected.length];
+
+                console.log(index)
+                console.log(this.selected.length+1)
+                console.log(Keno.Low[index][this.selected.length])
+                console.log((index / (this.selected.length+1))* Keno.Low[index][this.selected.length])
+                
                 e.innerHTML = payout.toFixed(1);
             })
+            // console.log(Keno.Low[0][1])
+            // console.log(Keno.Low[1][1])
+            // console.log(Keno.Low[2][1])
             this.count++;
-
-        }else if(op == 'remove'){
+            }
+        else if(op == 'remove'){
             upper.childNodes.forEach((e, index) => {
-                console.log(index + "-" + this.count)
-                let payout = (index / this.count) * Keno.Low[index][upper.childNodes.length - 2];
+                // console.log(index + "-" + this.count)
+                let payout = (index / this.selected.length) * Keno.Low[index][this.selected.length-1];
                 e.innerHTML = payout.toFixed(1);
             })
             upper.removeChild(upper.lastElementChild);
             lower.removeChild(lower.lastElementChild);
-            console.log(this.count)
+            // console.log(this.count)
             this.count--;
         }
 
@@ -413,7 +421,7 @@ export class Keno{
         let upper = this.cont.querySelector(".displayLower1");
 
         upper.childNodes.forEach((e, index) => {
-            let payout = (index / this.count) * Keno[val][index][upper.childNodes.length - 2];
+            let payout = (index / this.selected.length) * Keno[val][index][upper.childNodes.length - 2];
             e.innerHTML = payout.toFixed(2);
         })
     }
@@ -498,6 +506,8 @@ export class Keno{
         this.count = 0;
         this.reloadLower();
 
+        let notSelected = this.cont.querySelectorAll('.kenoTileButton:not(.kenoTileButtonSelected)')
+        notSelected.forEach( e=> e.style.opacity = '0.5');
         let amountInput = this.cont.querySelector(".amountInput").value;
         this.betAmount = parseFloat(amountInput).toFixed(2);
         this.parent.balance -= this.betAmount;

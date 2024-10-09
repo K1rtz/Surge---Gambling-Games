@@ -68,7 +68,7 @@ export class Frame{
 
 
         let self = this;
-        console.log(this.mBody)
+        // console.log(this.mBody)
         logo.onclick = (ev) =>{
             let x = document.body.querySelector(".mBody")
             x.replaceChildren()
@@ -77,7 +77,7 @@ export class Frame{
 
 
 
-        const mines = new Keno(this);
+        const mines = new Mines(this);
         mines.drawEverything(this.mBody);
 
 
