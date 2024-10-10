@@ -59,8 +59,8 @@ export class Frame{
         walletAmount.innerHTML = "1,000$"
         walletName.innerHTML = "Wallet"
 
-        walletHolder.appendChild(walletAmount)
         walletHolder.appendChild(walletName)
+        walletHolder.appendChild(walletAmount)
         
         this.mBody = document.createElement('div')
         this.mBody.classList.add("mBody");
@@ -77,7 +77,7 @@ export class Frame{
 
 
 
-        const mines = new Mines(this);
+        const mines = new Keno(this);
         mines.drawEverything(this.mBody);
 
 
