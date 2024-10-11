@@ -194,42 +194,62 @@ export class Frame{
 
         const plinkoCover = document.createElement('img');
         plinkoCover.classList.add('frontCover');
-        plinkoCover.src = "PlinkoCover2.png"
+        plinkoCover.src = "PACHINKO.png"
         game1.appendChild(plinkoCover);
 
         const game2 = document.createElement('div');
         game2.classList.add('game2')
         gameSlider.appendChild(game2);
+
+        game2.onclick = (ev) =>{
+            self.drawMines();
+        }
+
         
         
         const plinkoCover2 = document.createElement('img');
         plinkoCover2.classList.add('frontCover');
-        plinkoCover2.src = "PlinkoCover2.png"
+        plinkoCover2.src = "MINES.png"
         game2.appendChild(plinkoCover2);
 
         
-        var plinkoCover3 = document.createElement('img');
-        plinkoCover3.classList.add('frontCover');
-        plinkoCover3.src = "PlinkoCover2.png"
-        game2.appendChild(plinkoCover2);
-
-        var game3 = document.createElement('div');
+        const game3 = document.createElement('div');
+        game3.classList.add('game1')
         gameSlider.appendChild(game3);
-        game3.appendChild(plinkoCover3)
+
+        
+        game3.onclick = (ev) =>{
+            self.drawKeno();
+        }
+
+        const kenoCover = document.createElement('img');
+        kenoCover.classList.add('frontCover');
+        kenoCover.src = "KENO.png"
+        game3.appendChild(kenoCover);
 
 
-        for(let i = 0; i< 20; i++){
+        // var plinkoCover3 = document.createElement('img');
+        // plinkoCover3.classList.add('frontCover');
+        // plinkoCover3.src = "PlinkoCover2.png"
+        // game2.appendChild(plinkoCover2);
 
-            plinkoCover3 = document.createElement('img');
-            plinkoCover3.classList.add('frontCover');
-            plinkoCover3.src = "PlinkoCover2.png"
+        // var game3 = document.createElement('div');
+        // gameSlider.appendChild(game3);
+        // game3.appendChild(plinkoCover3)
+
+
+        // for(let i = 0; i< 20; i++){
+
+        //     plinkoCover3 = document.createElement('img');
+        //     plinkoCover3.classList.add('frontCover');
+        //     plinkoCover3.src = "PlinkoCover2.png"
             
 
-            game3 = document.createElement('div');
-            gameSlider.appendChild(game3);
-            game3.appendChild(plinkoCover3)
+        //     game3 = document.createElement('div');
+        //     gameSlider.appendChild(game3);
+        //     game3.appendChild(plinkoCover3)
 
-        }
+        // }
 
         
     }
@@ -238,6 +258,20 @@ export class Frame{
         var x = document.body.querySelector(".mBody")
         x.replaceChildren();
         this.currentGame = new Plinko();
+        this.currentGame.drawEverything(x);
+    }
+
+    drawMines(){
+        var x = document.body.querySelector(".mBody")
+        x.replaceChildren();
+        this.currentGame = new Mines();
+        this.currentGame.drawEverything(x);
+    }
+
+    drawKeno(){
+        var x = document.body.querySelector(".mBody")
+        x.replaceChildren();
+        this.currentGame = new Keno();
         this.currentGame.drawEverything(x);
     }
 
