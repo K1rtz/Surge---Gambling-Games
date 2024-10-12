@@ -257,21 +257,21 @@ export class Frame{
     drawPlinko(){
         var x = document.body.querySelector(".mBody")
         x.replaceChildren();
-        this.currentGame = new Plinko();
+        this.currentGame = new Plinko(this);
         this.currentGame.drawEverything(x);
     }
 
     drawMines(){
         var x = document.body.querySelector(".mBody")
         x.replaceChildren();
-        this.currentGame = new Mines();
+        this.currentGame = new Mines(this);
         this.currentGame.drawEverything(x);
     }
 
     drawKeno(){
         var x = document.body.querySelector(".mBody")
         x.replaceChildren();
-        this.currentGame = new Keno();
+        this.currentGame = new Keno(this);
         this.currentGame.drawEverything(x);
     }
 
