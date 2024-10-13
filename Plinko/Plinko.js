@@ -1,9 +1,20 @@
 import { Ball } from "./Ball.js";
-export class Plinko{
 
-    constructor(){
+export class Plinko{
+    static Low = [
+        [5.6, 2.1, 1.1, 1, 0.5, 1, 1.1, 2.1, 5.6],
+        [5.6, 2, 1.6, 1, 0.7, 0.7, 1, 1.6, 2, 5.6],
+        [8.9, 3, 1.4, 1.1, 1, 0.5, 1, 1.1, 1.4, 3, 8.9],
+        [8.4, 3, 1.9, 1.3, 1, 0.7, 0.7, 1, 1.3, 1.9, 3, 8.4],
+        [10, 3, 1.6, 1.4, 1.1, 1, 0.5, 1, 1.1, 1.4, 1.6, 3, 10],
+        [8.1, 4, 3, 1.9, 1.2, 0.9, 0.7, 0.7, 0.9, 1.2, 1.9, 3, 4, 8.1],
+        [7.1, 4, 1.9, 1.4, 1.3, 1.1, 1, 0.5, 1, 1.1, 1.3, 1.4, 1.9, 4, 7.1],
+        [15, 8, 3, 2, 1.5, 1.1, 1, 0.7, 0.7, 1, 1.1, 1.5, 2, 3, 8, 15],
+        [16, 9, 2, 1.4, 1.4, 1.2, 1.1, 1, 0.5, 1, 1.1, 1.2, 1.4, 1.4, 2, 9, 16]
+    ]
+    
+    constructor(parent){
         this.cont = null;
-        //this.drawEverything(host);
         this.betAmount = 1;
         this.kanvas = null;
         this.ctx = null;
@@ -15,6 +26,7 @@ export class Plinko{
         this.obstacles = [];
         this.lastObstacles = [];
         this.gap;
+        this.parent = parent;
     }
 
     drawEverything(host){
@@ -81,7 +93,7 @@ export class Plinko{
         const amountInput = document.createElement('input');
         amountInput.classList.add('amountInput');
         betAmountInput.appendChild(amountInput);
-        amountInput.value="0.00";
+        amountInput.value="1.00";
 
         const bHalf = document.createElement('button')
         const bDouble = document.createElement('button')
@@ -105,6 +117,7 @@ export class Plinko{
         riskText.classList.add('betAmountText')
         riskHolder.classList.add('riskHolder')
         riskSelekt.classList.add('riskInput')
+        riskSelekt.classList.add('riskHandle')
         form.appendChild(riskHolder);
         riskHolder.appendChild(riskText);
         riskHolder.appendChild(riskSelekt);
@@ -133,6 +146,7 @@ export class Plinko{
         rowsText.classList.add('betAmountText')
         rowsHolder.classList.add('riskHolder')
         rowsSelekt.classList.add('riskInput')
+        rowsSelekt.classList.add('rowsSelektt')
 
         
         for(let i = 8; i < 17; i++){
@@ -157,8 +171,8 @@ export class Plinko{
             self.rows = rows;
             self.updateRectangles(rows);
             self.updateObstacles(rows);
-
         })
+
         
 
 
@@ -179,6 +193,7 @@ export class Plinko{
         numberOfBetsHolder.classList.add('numberOfBetsHolder')
         numberOfBetsText.classList.add('betAmountText')
         numberOfBetsInput.classList.add('numberOfBetsInput')
+        numberOfBetsInput.classList.add('numberOfBetsHandle')
 
         form.appendChild(numberOfBetsHolder)
 
@@ -198,7 +213,9 @@ export class Plinko{
 
         buttonBet.onclick = (ev) =>{
             let rnd = Math.floor(Math.random() * this.gap * 2 + 1 + this.kanvas.width/2 - this.gap)
-            this.activeBalls.push(new Ball(rnd, -6, this.ballSize, 10));
+            let bet = parseFloat(this.cont.querySelector(".amountInput").value)
+            this.parent.balance -= bet;
+            this.activeBalls.push(new Ball(rnd, -6, this.ballSize, bet));
         }
 
 
@@ -478,7 +495,7 @@ export class Plinko{
         this.activeBalls = this.activeBalls.filter(e=>{
             // console.log(e)
             if(e.y > this.lastObstacles[0].y){
-                this.activateMultiplierAnimation(e.x);
+                this.activateMultiplierAnimation(e);
                 e.update();
                 return false
             }
@@ -495,19 +512,36 @@ export class Plinko{
             })
         })
 
+        let select = this.cont.querySelector(".rowsSelektt")
+        let risk = this.cont.querySelector(".riskHandle")
+        let numOfBets = this.cont.querySelector(".numberOfBetsHandle")
+        
+
+        if(this.activeBalls.length > 0 && select.disabled == false){
+            select.disabled = true;
+            risk.disabled = true;
+            numOfBets.disabled = true;
+        }else if(this.activeBalls.length == 0 && select.disabled == true){
+            select.disabled = false;
+            risk.disabled = false;
+            numOfBets.disabled = false;
+        }
+        
 
 
-        console.log("xd");
+        // console.log("xd");
         this.animationFrameId = requestAnimationFrame(()=>this.animate());
     }
 
-    activateMultiplierAnimation(ballX){
+    activateMultiplierAnimation(ball){
 
-        const manji = this.lastObstacles.filter(e=> e.x < ballX);
-        console.log(this.multipliers[manji.length-1]);
+        const manji = this.lastObstacles.filter(e=> e.x < ball.x);
         if(this.multipliers[manji.length-1]){
-        this.multiplierHolders[manji.length-1].style.backgroundColor="green";
         this.multiplierHolders[manji.length-1].classList.add('animation');
+
+
+        this.parent.balance += this.multipliers[manji.length-1]*ball.value
+
         setTimeout(()=>{this.multiplierHolders[manji.length-1].classList.remove('animation');},200);
         }
  
@@ -527,43 +561,37 @@ export class Plinko{
         switch(rows){
             case 8:
                 width = '85%';
-                this.multipliers = ['5.6x', '2.1x', '1.1x', '1x', '0.5x', '1x', '1.1x', '2.1x', '5.6x']
                 break;
             case 9:
                 width = '82.5%';
-                this.multipliers = ['5.6x', '2x', '1.6x', '1x', '0.7x', '0.7x', '1x', '1.6x', '2x', '5.6x']
                 break;
             case 10:
                 width = '81.2%';
-                this.multipliers = ['8.9x', '3x', '1.4x', '1.1x', '1x', '0.5x', '1x', '1.1x', '1.4x', '3x', '8.9x']
                 break;
             case 11:
                 width = '80.2%';
-                this.multipliers = ['8.4x', '3x', '1.9x', '1.3x', '1x', '0.7x', '0.7x', '1x', '1.3x', '1.9x', '3x', '8.4x']
                 break;
             case 12:
                 width = '79.2%';
-                this.multipliers = ['10x', '3x', '1.6x', '1.4x', '1.1x', '1x', '0.5x', '1x', '1.1x', '1.4x', '1.6x', '3x', '10x']
                 break;
             case 13:
                 width = '78.2%';
-                this.multipliers = ['8.1x', '4x', '3x', '1.9x', '1.2x', '0.9x', '0.7x', '0.7x', '0.9x', '1.2x', '1.9x', '3x', '4x', '8.1x']
                 break;
             case 14:
                 width = '77.5%';
-                this.multipliers = ['7.1x', '4x', '1.9x', '1.4x', '1.3x', '1.1x', '1x', '0.5x', '1x', '1.1x', '1.3x', '1.4x', '1.9x', '4x', '7.1x']
                 break;
             case 15:
                 width = '77%';
-                this.multipliers = ['15x', '8x', '3x', '2x', '1.5x', '1.1x', '1x', '0.7x', '0.7x', '1x', '1.1x', '1.5x', '2x', '3x', '8x', '15x']
                 break;
             case 16:
                 width = '76.4%';
-                this.multipliers = ['16x', '9x', '2x', '1.4x', '1.4x', '1.2x', '1.1x', '1x', '0.5x', '1x', '1.1x', '1.2x', '1.4x', '1.4x', '2x', '9x', '16x']
                 break;
             default:
                 width = '9999%';
+
         }
+
+        this.multipliers = Plinko.Low[rows-8]
 
         var par = this.cont.querySelector(".displayInnerRectangles");
         par.replaceChildren();
@@ -578,11 +606,12 @@ export class Plinko{
             s = document.createElement('span');
             s.classList.add('s');
             z.appendChild(s);
-            s.innerHTML = this.multipliers[i];
+            const lightness = 90 - (Math.abs((rows) / 2 - i) * 10); 
+            z.style.backgroundColor = `hsl(210, 100%, ${lightness}%)`;
+            s.innerHTML = this.multipliers[i] + "x";
             this.multiplierHolders.push(z);
             par.appendChild(z);
         }
-        //z.style.animation = ' slideDown 0.5s ease-in-out';
 
 
 
@@ -670,7 +699,7 @@ export class Plinko{
                     radius: radius
                 })
                 if(i==rows-1){
-                    console.log("XDD")
+                    // console.log("XDD")
                     this.lastObstacles.push({
                         x: x+this.gap*j,
                         y: y+this.gap*i,
@@ -682,7 +711,7 @@ export class Plinko{
             frl++;
         }
 
-        console.log(this.lastObstacles);
+        // console.log(this.lastObstacles);
 
     }
 
@@ -718,6 +747,7 @@ export class Plinko{
         ball.velocityX += (Math.random() - 0.5) * randomness;
         ball.velocityY += (Math.random() - 0.5) * randomness;
     }
+    
     drawDescription(host){
 
         const descriptionHolder = document.createElement('div')

@@ -8,7 +8,6 @@ export class Frame{
 
     constructor(){
         this.drawHeader();
-        // this.drawTesting();
         this.slides = [];
         this.mBody = null;
         this.currentGame;
@@ -77,15 +76,9 @@ export class Frame{
 
 
 
-        const mines = new Keno(this);
+        const mines = new Plinko(this);
         mines.drawEverything(this.mBody);
 
-
-        // this.drawPlinko(this.mBody);    
-
-
-
-        // this.drawInitialPage(this.mBody);
 
     }
 
