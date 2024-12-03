@@ -236,7 +236,7 @@ export class Mines{
                     mineButton.setAttribute('clicked', 'true');
                     
                     if(this.values[mineButton.num]==0){
-                        this.mines[mineButton.num].img.src="123.png";
+                        this.mines[mineButton.num].img.src="./Images/Mines/pumpkin.png";
                         self.endGame(false);
                     }else{
                         this.mines[mineButton.num].img.src="./Images/Mines/sakura.png";
@@ -339,7 +339,7 @@ export class Mines{
             //prikazi neoktrivena polja korisniku 
             this.mines.forEach(m =>{
                 if(this.values[m.button.num] == 0){
-                    m.img.src="123.png";
+                    m.img.src="./Images/Mines/pumpkin.png";
                 }
                 else{
                     m.img.src="./Images/Mines/sakura.png";
