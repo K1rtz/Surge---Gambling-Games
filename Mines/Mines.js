@@ -218,7 +218,7 @@ export class Mines{
 
             let mineImage = document.createElement('img')
             mineImage.classList.add('mineImage')
-            mineImage.src = "sak.png"
+            mineImage.src = "./Images/Mines/sakura.png"
             mineHolder.appendChild(mineImage);
 
             let mineButton = document.createElement('button');
@@ -239,7 +239,7 @@ export class Mines{
                         this.mines[mineButton.num].img.src="123.png";
                         self.endGame(false);
                     }else{
-                        this.mines[mineButton.num].img.src="sak.png";
+                        this.mines[mineButton.num].img.src="./Images/Mines/sakura.png";
                         self.recalculateProfit();
                     }
                     
@@ -342,7 +342,7 @@ export class Mines{
                     m.img.src="123.png";
                 }
                 else{
-                    m.img.src="sak.png";
+                    m.img.src="./Images/Mines/sakura.png";
                 }
                 m.button.setAttribute('clicked', 'true');
                 m.img.classList.add('end');
@@ -484,7 +484,7 @@ export class Mines{
         
         const logo = document.createElement('img')
         logo.classList.add('bLogo');
-        logo.src="./surge5.png"
+        logo.src="./Images/surge5.png"
         
         logoContainer.appendChild(logo);
         
@@ -518,7 +518,7 @@ export class Mines{
 
         const cover = document.createElement('img')
         cover.classList.add('cover')
-        cover.src = './MINES.png';
+        cover.src = './Images/MINES.png';
         coverAndRText.appendChild(cover);
 
         const textToTheRight = document.createElement('textToTheRight');

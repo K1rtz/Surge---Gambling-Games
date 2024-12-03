@@ -59,7 +59,7 @@ export class Keno{
         this.mines = [];
         this.parent = parent;
 
-        this.buttonSound = new Audio('./kenoButtonClick1.mp3')
+        this.buttonSound = new Audio('./Sound/Keno/kenoButtonClick1.mp3')
     }
 
 
@@ -281,7 +281,7 @@ export class Keno{
 
             let kenoTileImage = document.createElement('img')
             kenoTileImage.classList.add('kenoTileImage');
-            kenoTileImage.src = "./star2.png"
+            kenoTileImage.src = "./Images/Keno/star.png"
             kenoTileHolder.appendChild(kenoTileImage);
 
             let kenoTileButton = document.createElement('button');
@@ -295,7 +295,7 @@ export class Keno{
 
             kenoTileButton.onclick = (ev) =>{
                 if(!this.selected.find(e=> e.button === kenoTileButton && e.img === kenoTileImage) && this.selected.length < 10){
-                    let sound = new Audio('./kenoButtonClick1.mp3');
+                    let sound = new Audio('./Sound/Keno/kenoButtonClick1.mp3');
                     sound.volume = 0.1;
                     sound.play();
                     kenoTileButton.classList.add('kenoTileButtonSelected');
@@ -378,7 +378,7 @@ export class Keno{
             
             
             let u2 = document.createElement('img');
-            u2.src = "./star2.png"//sak
+            u2.src = "./Images/Keno/star.png"//sak
             u2.classList.add('dlImg')
             
             
@@ -578,7 +578,7 @@ export class Keno{
             }, 200); // Trajanje animacije rasta
             setTimeout(()=>{
                 let sound = document.createElement('audio');
-                sound.src = "hit.mp3";
+                sound.src = "./Sound/Keno/hit.mp3";
                 sound.volume = 0.2;
                 sound.play();
                 kenoTileImage.classList.add('animating')
@@ -600,7 +600,7 @@ export class Keno{
                 kenoTileButton.classList.remove('animating');
                 kenoTileButton.classList.add('hidden'); // Nestani dugme
                 let sound = document.createElement('audio');
-                sound.src = "err.mp3";
+                sound.src = "./Sound/Keno/err.mp3";
                 sound.playbackRate = 1.5;
                 sound.volume = 0.2;
                 sound.play();
@@ -640,6 +640,8 @@ export class Keno{
             promises.push(
                 new Promise((resolve) => {
                     setTimeout(() => {
+                        console.log(`Executing pickRandom at index ${i}, time: ${performance.now()}`);
+
                         this.pickRandom();
                         resolve();
                     }, 80 * i);
@@ -677,15 +679,15 @@ export class Keno{
 
     pickRandom(){
 
-                let rnd;
-                do{
-                    rnd = Math.floor(Math.random() * 40);
-                }
-                while(this.selected.find(obj => obj.button === this.tiles[rnd].button));
-                
-                let kenoTileButton = this.tiles[rnd].button;
+        let rnd;
+        do{
+            rnd = Math.floor(Math.random() * 40);
+        }
+        while(this.selected.find(obj => obj.button === this.tiles[rnd].button));
+        
+        let kenoTileButton = this.tiles[rnd].button;
 
-                kenoTileButton.click();
+        kenoTileButton.click();
     }
 
 
@@ -788,7 +790,7 @@ export class Keno{
         
         const logo = document.createElement('img')
         logo.classList.add('bLogo');
-        logo.src="./surge5.png"
+        logo.src="./Images/surge5.png"
         
         logoContainer.appendChild(logo);
         
@@ -821,7 +823,7 @@ export class Keno{
 
         const cover = document.createElement('img')
         cover.classList.add('cover')
-        cover.src = './KENO.png';
+        cover.src = './Images/KENO.png';
         coverAndRText.appendChild(cover);
 
         const textToTheRight = document.createElement('textToTheRight');

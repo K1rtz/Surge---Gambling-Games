@@ -382,7 +382,7 @@ export class Plinko{
         
         const logo = document.createElement('img')
         logo.classList.add('bLogo');
-        logo.src="./surge5.png"
+        logo.src="./Images/surge5.png"
         
         logoContainer.appendChild(logo);
         
@@ -760,7 +760,7 @@ export class Plinko{
 
         const cover = document.createElement('img')
         cover.classList.add('cover')
-        cover.src = './PACHINKO.png';
+        cover.src = './Images/PACHINKO.png';
         coverAndRText.appendChild(cover);
 
         const textToTheRight = document.createElement('textToTheRight');
