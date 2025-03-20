@@ -27,6 +27,9 @@ export class Plinko{
         this.lastObstacles = [];
         this.gap;
         this.parent = parent;
+        this.autoplay = false;
+
+
     }
 
     drawEverything(host){
@@ -39,8 +42,6 @@ export class Plinko{
         gameBody.classList.add('gameBody')
         fullGame.appendChild(gameBody);
 
-
-
         this.drawForm(gameBody);
         this.drawGame(gameBody, 8);
         this.drawFoot(fullGame);
@@ -48,7 +49,6 @@ export class Plinko{
 
     }
 
-    //Crta Formu levo, nije flex
     drawForm(host){
         
         const formHolder = document.createElement('div');
@@ -92,6 +92,7 @@ export class Plinko{
 
         const amountInput = document.createElement('input');
         amountInput.classList.add('amountInput');
+        amountInput.type = 'number';
         betAmountInput.appendChild(amountInput);
         amountInput.value="1.00";
 
@@ -121,8 +122,6 @@ export class Plinko{
         form.appendChild(riskHolder);
         riskHolder.appendChild(riskText);
         riskHolder.appendChild(riskSelekt);
-
-        
 
         var riskOptions = ["Low", "Medium", "High"];
         let op;
@@ -155,17 +154,10 @@ export class Plinko{
             rowsSelekt.appendChild(op);
         }
 
-
-
-
-
         const self = this;
         rowsSelekt.addEventListener('change', function(e){
             const rows = parseInt(e.target.value, 10);
-            //Samo kada je trenutna igra okoncana
-            //Tj kada nema loptica na ekranu
-            //Potencijalno samo disable selekt element dok je igra aktivna
-            //crtaj 
+
             //self.drawGame(host, rows);
 
             self.rows = rows;
@@ -173,15 +165,7 @@ export class Plinko{
             self.updateObstacles(rows);
         })
 
-        
-
-
-
-
-
-
         //Number of bets
-
         const numberOfBetsHolder = document.createElement('div');
         const numberOfBetsText = document.createElement('div')
         const numberOfBetsInput = document.createElement('input')
@@ -194,6 +178,7 @@ export class Plinko{
         numberOfBetsText.classList.add('betAmountText')
         numberOfBetsInput.classList.add('numberOfBetsInput')
         numberOfBetsInput.classList.add('numberOfBetsHandle')
+        numberOfBetsInput.type = 'number';
 
         form.appendChild(numberOfBetsHolder)
 
@@ -212,10 +197,44 @@ export class Plinko{
         buttonBet.innerHTML = "Bet";
 
         buttonBet.onclick = (ev) =>{
+            
             let rnd = Math.floor(Math.random() * this.gap * 2 + 1 + this.kanvas.width/2 - this.gap)
             let bet = parseFloat(this.cont.querySelector(".amountInput").value)
-            this.parent.balance -= bet;
-            this.activeBalls.push(new Ball(rnd, -6, this.ballSize, bet));
+            
+            if(!self.autoplay){
+
+                // this.parent.balance -= bet;
+                if(this.parent.reduceBalance(bet)){
+                    let sound = new Audio('./Sound/Plinko/zap-plinko.mp3');
+                    sound.volume = 0.1;
+                    sound.play();
+                    console.log("MOZE")
+                    this.activeBalls.push(new Ball(rnd, -6, this.ballSize, bet));
+                }
+                
+            }
+            else{//ako je autoplay ukljucen
+                let numba = document.querySelector(".numberOfBetsInput").value;
+                console.log("Autoplay je ukljucen")
+                let count = 0;
+                if(this.parent.reduceBalance(bet * numba)){
+                    const interval = setInterval(() => {
+                        if (count >= numba) {
+                            clearInterval(interval); // Zaustavlja ponavljanje nakon X puta
+                        } else {
+                            let rnd = Math.floor(Math.random() * this.gap * 2 + 1 + this.kanvas.width/2 - this.gap)
+                            let sound = new Audio('./Sound/Plinko/zap-plinko.mp3');
+                            sound.volume = 0.2;
+                            sound.play();
+                            this.activeBalls.push(new Ball(rnd, -6, this.ballSize, bet));
+                            count++;
+                        }
+                    }, 100);
+                }
+            }
+
+
+
         }
 
 
@@ -225,14 +244,19 @@ export class Plinko{
         bManual.onclick = (ev) =>{
             bManual.classList.add("hovColor");
             bAuto.classList.remove("hovColor");
+            this.autoplay = false;
+            console.log(this.autoplay);
 
             numberOfBetsHolder.style.display = "none";      
             buttonBet.innerHTML = "Bet";
 
         }
         bAuto.onclick = (ev) =>{
+
             bAuto.classList.add("hovColor");
             bManual.classList.remove("hovColor");
+            this.autoplay = true;
+            console.log(this.autoplay);
 
             numberOfBetsHolder.style.display = "flex";            
             buttonBet.innerHTML = "Start Autobet";
@@ -423,7 +447,6 @@ export class Plinko{
             case 8:
                 this.gap = 68;
                 radius = 8;
-                
                 y = 30;
                 break;
             case 9:
@@ -515,25 +538,30 @@ export class Plinko{
         let select = this.cont.querySelector(".rowsSelektt")
         let risk = this.cont.querySelector(".riskHandle")
         let numOfBets = this.cont.querySelector(".numberOfBetsHandle")
-        
+        let logo = document.querySelector(".logo");
 
         if(this.activeBalls.length > 0 && select.disabled == false){
+            console.log(logo);
             select.disabled = true;
             risk.disabled = true;
             numOfBets.disabled = true;
+            logo.disabled = true;
+
         }else if(this.activeBalls.length == 0 && select.disabled == true){
             select.disabled = false;
             risk.disabled = false;
             numOfBets.disabled = false;
+            logo.disabled = false;
         }
         
-
-
-        // console.log("xd");
         this.animationFrameId = requestAnimationFrame(()=>this.animate());
     }
 
     activateMultiplierAnimation(ball){
+
+        let sound = new Audio('./Sound/Plinko/laser.mp3');
+        sound.volume = 0.05;
+        sound.play();
 
         const manji = this.lastObstacles.filter(e=> e.x < ball.x);
         if(this.multipliers[manji.length-1]){
@@ -547,9 +575,6 @@ export class Plinko{
  
         
     }
-
-
-
 
     update(){
         this.drawPyramid(this.rows);
@@ -729,21 +754,18 @@ export class Plinko{
         const distance = Math.sqrt(dx * dx + dy * dy);
         const overlap = ball.radius + 4 - distance;
     
-        // Sinus i kosinus ugla normalnog vektora u odnosu na x osu.
         const normalX = dx / distance;
         const normalY = dy / distance;
     
-        // Pomeri loptu van prepreke
         ball.x += normalX * overlap;
         ball.y += normalY * overlap;
     
-        // Reflektuj brzinu lopte
         const dot = ball.velocityX * normalX + ball.velocityY * normalY;
-        const restitution = 0.8; // Smanji intenzitet odbijanja
+        const restitution = 0.8; 
         ball.velocityX -= 2 * dot * normalX * restitution;
         ball.velocityY -= 2 * dot * normalY * restitution;
 
-        const randomness = 0.03; // Intenzitet nasumične promene
+        const randomness = 0.03; 
         ball.velocityX += (Math.random() - 0.5) * randomness;
         ball.velocityY += (Math.random() - 0.5) * randomness;
     }
@@ -757,7 +779,6 @@ export class Plinko{
         const coverAndRText = document.createElement('div');
         coverAndRText.classList.add('coverAndRText');
 
-
         const cover = document.createElement('img')
         cover.classList.add('cover')
         cover.src = './Images/PACHINKO.png';
@@ -765,7 +786,6 @@ export class Plinko{
 
         const textToTheRight = document.createElement('textToTheRight');
         textToTheRight.classList.add('textToTheRight');
-        
         
         const text0 = document.createElement('span');
         text0.classList.add('text0')
@@ -783,7 +803,6 @@ export class Plinko{
         textToTheRight.appendChild(text2);
         coverAndRText.appendChild(textToTheRight);
         
-        
         descriptionHolder.appendChild(coverAndRText);
 
         const additionalDescription = document.createElement('div');
@@ -795,7 +814,6 @@ export class Plinko{
         underText.innerHTML = "A pachinko machine resembles a vertical pinball machine, but is different from Western pinball in several ways. It uses small  steel balls, which the owner rents to the player, while pinball games use a larger, captive ball. The player loads one or more balls into the machine, then presses and releases a spring-loaded handle, which is attached to a padded hammer inside the machine, launching the ball(s) into a metal track. The track guides the ball over the top of the playing field; then when it loses momentum, it falls into the playing field. Some pachinko machines have a bumper to bounce the ball as it reaches the top, while others allow it to travel all the way around the field, to fall the second time it reaches the top."
 
         additionalDescription.appendChild(underText);
-
     }
 
 }

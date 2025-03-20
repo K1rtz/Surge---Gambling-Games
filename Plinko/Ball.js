@@ -44,7 +44,6 @@ export class Ball{
         ctx.stroke();
 
         ctx.closePath();
-
     }
 
 

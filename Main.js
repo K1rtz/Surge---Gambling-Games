@@ -1,7 +1,7 @@
 /** @type {typeof document.createElement} */
 const _ = document.createElement.bind(document);
-import { Frame } from "./Frame.js";
+import { HomePage } from "./HomePage.js";
 
 
 
-const Eve = new Frame();
+const Eve = new HomePage();

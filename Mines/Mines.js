@@ -13,7 +13,6 @@ export class Mines{
 
     }
 
-
     drawEverything(host){
         const fullGame = document.createElement('div');
         fullGame.classList.add('fullGame');
@@ -31,8 +30,6 @@ export class Mines{
 
         this.active = false;
 
-
-
     }
 
     drawForm(host){
@@ -46,7 +43,6 @@ export class Mines{
         formHolder.appendChild(form)
 
         //Bet amount
-
         const betAmountHolder = document.createElement('div')
         betAmountHolder.classList.add('betAmountHolder')
         const betAmountText = document.createElement('div')
@@ -55,7 +51,6 @@ export class Mines{
         betAmountInput.classList.add('betAmountInput')
 
         betAmountText.innerHTML = "Bet Amount";
-
         betAmountHolder.appendChild(betAmountText)
         betAmountHolder.appendChild(betAmountInput)
 
@@ -65,6 +60,12 @@ export class Mines{
         amountInput.type = "number";
         amountInput.min = "0.25";
         amountInput.value="1.00";
+
+        amountInput.addEventListener("blur", function(){
+            if(this.value.trim() === "" || isNaN(this.value)){
+                this.value = 1.00;
+            }
+        })
 
         const bHalf = document.createElement('button')
         const bDouble = document.createElement('button')
@@ -80,7 +81,6 @@ export class Mines{
 
 
         //Mines
-
         const rowsHolder = document.createElement('div');
         const rowsText = document.createElement('div')
         const rowsSelekt = document.createElement('select')
@@ -131,10 +131,6 @@ export class Mines{
         pickRandomButton.innerHTML = "Pick random field"
 
 
-
-
-
-
         const self = this;
         rowsSelekt.addEventListener('change', function(e){
             const numberOfMines = parseInt(e.target.value, 10);
@@ -146,16 +142,8 @@ export class Mines{
             //self.calculateMineValues(numberOfMines);
             self.numberOfMines = numberOfMines;
         })
-        
-
-
-
-
-
 
         //Button
-
-
         const buttonBox = document.createElement('div');
         const buttonBet = document.createElement('button');
         buttonBox.classList.add('buttonBox')
@@ -163,10 +151,6 @@ export class Mines{
         form.appendChild(buttonBox);
         buttonBox.appendChild(buttonBet);
         buttonBet.innerHTML = "Bet";
-
-
-
-        
 
         pickRandomButton.onclick = (ev) =>{
             let covered = this.cont.querySelectorAll('.mineButton[clicked="false"]');
@@ -178,22 +162,19 @@ export class Mines{
             
         }
 
-
-
-
         buttonBet.onclick = (ev) =>{ self.active ? this.endGame(true) : this.initiateNewGame()}
 
-        
-
         bHalf.onclick = (ev) =>{
+            let wager = parseFloat(this.cont.querySelector('.amountInput').value);
             if(this.betAmount != 0 && this.betAmount >= 0.5){
-                amountInput.value = (this.betAmount / 2).toFixed(2);
+                amountInput.value = (wager / 2).toFixed(2);
                 this.betAmount = this.betAmount / 2;
             }
         }
         bDouble.onclick = (ev) =>{
+            let wager = parseFloat(this.cont.querySelector('.amountInput').value);
             if(this.betAmount != 0){
-                amountInput.value = (this.betAmount * 2).toFixed(2);
+                amountInput.value = (wager * 2).toFixed(2);
                 this.betAmount = this.betAmount * 2;
             }
         }
@@ -289,40 +270,43 @@ export class Mines{
     }
 
     initiateNewGame(){
-        this.active = true;
+
         let wager = parseFloat(this.cont.querySelector('.amountInput').value);
-        this.currentProfit = wager;
-
-        this.parent.balance -= wager;
-
-        this.resetMines();
-        this.calculateMineValues(this.numberOfMines);
-
-        let profitDisplay = this.cont.querySelector('.totalProfitDisplayHolder');
-        profitDisplay.style.display = 'inline'
-        
-        let randomButton = this.cont.querySelector('.buttonPickRandom');
-        randomButton.style.display = 'inline'
-
-        let rowsSelekt = this.cont.querySelector('.riskInput')
-        let amountInput = this.cont.querySelector('.amountInput')
-        let bHalf = this.cont.querySelector('.bHalf')
-        let bDouble = this.cont.querySelector('.bDouble')
-
-        rowsSelekt.disabled = true;
-        amountInput.disabled = true;
-        bHalf.disabled = true;
-        bDouble.disabled = true;
-
-        let totalProfitDisplay = this.cont.querySelector(".totalProfitDisplay");
-        totalProfitDisplay.innerHTML = parseFloat(this.currentProfit).toFixed(2);
-        
-        let totalProfitText = this.cont.querySelector(".totalProfitText");
-        totalProfitText.innerHTML = "Total profit [" + (this.multiplier).toFixed(2) + "x]";
-
-
-        let buttonBet = this.cont.querySelector(".buttonBet");
-        buttonBet.innerHTML = "Cashout"
+        if(this.parent.reduceBalance(wager)){
+            
+            this.active = true;
+            this.currentProfit = wager;
+            // this.parent.balance -= wager;
+            
+            this.resetMines();
+            this.calculateMineValues(this.numberOfMines);
+            
+            let profitDisplay = this.cont.querySelector('.totalProfitDisplayHolder');
+            profitDisplay.style.display = 'inline'
+            
+            let randomButton = this.cont.querySelector('.buttonPickRandom');
+            randomButton.style.display = 'inline'
+            
+            let rowsSelekt = this.cont.querySelector('.riskInput')
+            let amountInput = this.cont.querySelector('.amountInput')
+            let bHalf = this.cont.querySelector('.bHalf')
+            let bDouble = this.cont.querySelector('.bDouble')
+            
+            rowsSelekt.disabled = true;
+            amountInput.disabled = true;
+            bHalf.disabled = true;
+            bDouble.disabled = true;
+            
+            let totalProfitDisplay = this.cont.querySelector(".totalProfitDisplay");
+            totalProfitDisplay.innerHTML = parseFloat(this.currentProfit).toFixed(2);
+            
+            let totalProfitText = this.cont.querySelector(".totalProfitText");
+            totalProfitText.innerHTML = "Total profit [" + (this.multiplier).toFixed(2) + "x]";
+            
+            
+            let buttonBet = this.cont.querySelector(".buttonBet");
+            buttonBet.innerHTML = "Cashout"
+        }
 
     }
 

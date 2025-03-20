@@ -6,26 +6,33 @@
 body{
     margin: 0;
     padding: 0;
+    height: 1200px;
     /* background-color: rgb(23, 30, 41); */
-    background-color: #1a2c38;
+    /* background-color: #1a2c38; */
 
 }
+
+  body {
+    background-color: #080c17;
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 2px, transparent 2px, transparent 10px);
+    background-size: 20px 20px;
+  }
 
 header{
     position: fixed;
     width: 100%;
     background-color: #0f212e;
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 2px, transparent 2px, transparent 10px);
+
     margin: 0;
     padding: 0;
     z-index: 5;
     height: 70px;
-    /* background-color: rgb(28, 39, 56); */
-    /* border-bottom: 5px solid rgb(56, 60, 66); */
-    /* border-bottom: 5px solid rgb(56, 60, 66); */
     box-shadow: 0 4px 8px rgba(107, 107, 107, 0.2); 
     display: flex;
     box-shadow: #0003 0 4px 6px -1px, #0000001f 0 2px 4px -1px;
     box-shadow: #6c99ff 0 4px 6px -1px, #6c99ff 0 2px 4px -1px;
+    z-index: 10;
 
 }
 .headHolder{
@@ -67,7 +74,7 @@ header{
 
 
 .logo{
-    /* margin-left: 2.5rem; */
+    width: 110px;
     margin-top: 5px;
 }
 .logo:hover{
@@ -95,12 +102,11 @@ header{
     margin-left: auto;
     margin-right: auto;
     max-width: 1300px;
-    width: 101%;
+    width: 100%;
     position: relative;
     /* display: flex; */
     /* align-content: center; */
-
-    
+    /* height: 260px;     */
     align-items: center;
 }
 
@@ -111,10 +117,12 @@ header{
     grid-auto-columns: calc((100% / 3) - 8px);
     gap: 16px;
     overflow-x: auto;
+    /* overflow-x: hidden; */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: 0;
     /* background-color: aquamarine; */
+
 }
 .sliderWrapper::-webkit-scrollbar {
     display: none;
@@ -122,11 +130,13 @@ header{
 }
 .slide{
     scroll-snap-align: start;
-    height: 340px;
+    /* height: 340px; */
+    /* min-height: 340px; */
     list-style: none;
     background: rgb(40, 49, 64);
     background: #171e29;
     background: #1a2e4c;
+    background: #08162a;
 
 
     border: 1px solid #a5a5a5;
@@ -143,6 +153,7 @@ header{
     align-content: center;
     aspect-ratio: 4 / 2; /* Omjer širine i visine, možeš podesiti po želji */
     height: auto; /* Automatski određuje visinu na osnovu omjera */
+    height: 205px;
 }
 
 .slide .sButton
@@ -266,11 +277,205 @@ header{
     border: 2px solid #6c99ff;
 
 }
+/* Stilizuj skrol traku */
+::-webkit-scrollbar {
+    width: 8px; /* Širina skrol trake */
+    height: 8px; /* Visina skrol trake (ako je horizontalna) */
+}
 
+/* Stilizuj deo skrol trake koji se pomera */
+::-webkit-scrollbar-thumb {
+    background-color: #131b2e; /* Siva boja skrol dugmeta */
+    border-radius: 4px; /* Blago zaobljeni ivici */
+}
+
+/* Stilizuj deo skrol trake koji je pozadina */
+::-webkit-scrollbar-track {
+    background-color: #06080e; /* Pozadina skrol trake */
+    border-radius: 4px;
+}
 /* Search bar */
 .searchBarHolder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1300px;
     width: 100%;
+
+    border-radius: 10px;
+
+    /* background-color:#0f212e; */
+    background-color:#050b0f;
+
+    margin-top:40px;
+    height:60px;
+
+    /* margin-bottom: 300px; */
+    margin-bottom: 30px;
+
 }
+
+    .searchBar{
+        filter: blur(-1px);
+        width: 100%;
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        position: relative;
+        align-items: center;
+        /* z-index: 2; */
+        /* position: absolute; */
+    }
+        .searchBarInner{
+            display: flex;
+            align-items: center;
+            
+            margin-left: 10px;
+            padding-left: 10px;
+            width: 22%;
+            height: 40px;
+
+            /* justify-content: center; */
+            background-color: rgba(255, 255, 255, 0.034);
+            border-radius: 10px;
+        }
+        .searchRow{
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            
+        }
+
+            .input-box{
+                
+                flex: 1;
+                background: transparent;
+                border: 0;
+                outline: 0;
+                font-size: 18px;
+                /* color: #333; */
+                color: #ffffff;
+            }
+
+            .buttonSearch{
+                background: transparent;
+                border: none;
+                outline: none;
+            }
+
+            .fa-solid{
+                width: 25px;
+                color: #555;
+                font-size: 22px;
+                cursor: pointer;
+            }
+            ::placeholder{
+                color: #555;
+            }
+        .result-box{
+            position: absolute;
+            /* background-color: #0f212e; */
+            background-color: #050b0f;
+            justify-content: center;
+            width: 100%;
+            min-width: unset;
+            /* margin-left: 10px; */
+            /* margin-right: 10px; */
+            
+            max-width: 1300px;
+            height: 300px;
+            /* transform: translateX(-20px) translateY(170px); */
+            transform: translateY(40px);
+            left: 0;
+            border-radius: 0 0 15px 15px;
+
+            display: none;
+            flex-direction: column;
+            /* align-items: center; */
+            padding: 2px;
+            padding-bottom: 30px;
+            z-index: 5;
+
+        }
+        .result-box *{
+            margin: 2px;
+        }
+        .result-box-games{
+            display: flex;
+            flex-direction: row;
+            align-self: center;
+            width: 98%;
+            border: 2px solid #2d2e31;
+            /* box-shadow: inset 2px 0px 25px 2px #6c99ff; */
+            box-shadow: inset 2px 0px 25px 2px #000000;
+            border-radius: 15px;
+            padding: 4px;
+            /* height: 200px; */
+            /* max-height: 0px; */
+            height: 0px;
+            /* height: 0px; */
+
+            transition: height 0.2s linear;
+        }
+        .maxHeight{
+            height: 210px;
+            /* max-height: 500px; */
+        }
+
+        .testing{
+            background-color: rgb(130, 199, 130);
+            position: absolute;
+            top: 144px;
+            /* justify-self: center; */
+            /* left: 20px; */
+            width:97%;
+            align-self: center;
+            height: 0px;
+            z-index: -4;
+            /* box-shadow: 2px 0px 25px 2px #6c99ff; */
+            /* box-shadow: 2px 0px 95px 3px #0d2d76; */
+            box-shadow: 2px 0px 15px 3px #0d2d76;
+            border-radius: 15px;
+            transition: box-shadow 0.2s linear;
+        }
+        .resultBoxText{
+            /* border-bottom: 2px solid #2d2e31; */
+            padding-bottom: 0px;
+            color: white;
+            align-self: center;
+            /* box-shadow: #6c99ff 0 4px 6px -1px; */
+            /* box-shadow: #6c99ff 0 8px 10px 2px; */
+            /* box-shadow: inset 0 4px 6px -1px #6c99ff; */
+        }
+        .gsh{
+            color: White;
+            align-items: center;
+            justify-content: center;
+            font-size: 86px;
+        }
+          
+/* .mBody{
+}
+.gameSliderHolder{
+    filter: blur(2px);
+    filter: opacity(0.1);
+    
+}
+.slider{
+    filter: blur(2px);
+    filter: opacity(0.1);
+    
+} */
+
+body{
+    /* backdrop-filter: blur(20px); */
+    /* filter: blur(1px); */
+    /* background: rgba(0, 0, 0, 0.5); */
+}
+
+
+
 
 @media screen and (max-width: 1200px) {
     .sliderWrapper {
@@ -660,8 +865,20 @@ width: 100%;
     font-size: 18px;
     padding-bottom: 20px;
 }
+/* .ttestt{
+    position: absolute;
+    height: 68%;
+    width: 20px;
+    background-color: #08162a;
+    border-radius: 15px;
+    align-self: center;
+    box-shadow: 0px 2px 4px 4px green;
+    right: 30px;
+    margin-left: 10px;
+} */
 /* awdawddaw */
 .gameSliderHolder{
+    position: relative;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -670,15 +887,19 @@ width: 100%;
     height: 250px;
     margin-top: 40px;
     background-color:#0f212e;
+    background-color:#050c12;
     border-radius: 10px;
     padding-top: 10px;
+    overflow: hidden;
 }
 
 .sliderTitle{
     color: rgb(230, 228, 228);
-    /* font-weight: 600; */
+    font-weight: 600;
+    font-size: 16px;
+    padding-bottom: 2px;
+    /* font-size: 18px; */
     font-family:monospace;
-    font-size: 18px;
     margin-left: 22px;
     margin-right: 22px;;
     border-bottom: 1px solid rgb(233, 233, 233);
@@ -692,10 +913,10 @@ width: 100%;
     grid-auto-flow: column;
     grid-auto-columns: auto;
     gap: 10px; 
-    width: 50%;
+    /* width: 50%; */
     /* grid-auto-columns: calc((100% / 8) - 8px); */
     grid-auto-columns: calc((100% / 4) - 8px);
-    min-width: 625px;
+    /* min-width: 625px; */
     gap: 8px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -703,6 +924,9 @@ width: 100%;
     scrollbar-width: 0;
     overflow-y: visible;
     padding: 10px;
+    overflow: hidden;
+    width: 50%;
+
 }
 .gameSlider::-webkit-scrollbar {
     display: none;
@@ -715,8 +939,30 @@ width: 100%;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Dodaje tranziciju */
     /* border: 2px solid#6c99ff; */
+}
+
+.frontkaver{
+    width: 150px;
+    min-width: 150px;
+    height: 10px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: top;
+    /* overflow: hidden; */
+    clip-path: inset(0% 0% 90% 0%); /* Početno vidljivo samo 10% slike */
+    /* transition: clip-path 2s linear; */
+    transition: height 0.2s linear;
+
+    /* transition: transform 0.3s ease, box-shadow 0.3s ease; Dodaje tranziciju */
+}
+
+.frontkaverExpand{
+    height: 190px;
+    clip-path: inset(0% 0% 0% 0%); /* Početno vidljivo samo 10% slike */
 
 }
+
+
 .frontCover:hover{
     transform: translateY(-4px); /* Pomera element na gore za 3px */
     cursor: pointer;

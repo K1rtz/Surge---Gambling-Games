@@ -1,45 +1,41 @@
 export class Keno{
+    static LowRisk =  {
+        1: { 0: 0.70, 1: 1.85 },
+        2: { 0: 0.00, 1: 2.00, 2: 3.80 },  
+        3: { 0: 0.00, 1: 1.10, 2: 1.38, 3: 26.00 },
+        4: { 0: 0.00, 1: 0.00, 2: 2.20, 3: 7.90, 4: 90.00 },
+        5: { 0: 0.00, 1: 0.00, 2: 1.50, 3: 4.20, 4: 13.00, 5: 300.00 },
+        6: { 0: 0.00, 1: 0.00, 2: 1.10, 3: 2.00, 4: 6.20, 5: 100.00, 6: 700.00 },
+        7: { 0: 0.00, 1: 0.00, 2: 1.10, 3: 1.60, 4: 3.50, 5: 15.00, 6: 225.00, 7: 700.00 },
+        8: { 0: 0.00, 1: 0.00, 2: 1.10, 3: 1.50, 4: 2.00, 5: 5.50, 6: 39.00, 7: 100.00, 8: 800.00 },
+        9: { 0: 0.00, 1: 0.00, 2: 1.10, 3: 1.30, 4: 1.70, 5: 2.50, 6: 7.50, 7: 50.00, 8: 250.00, 9: 1000.00 },
+        10: { 0: 0.00, 1: 0.00, 2: 1.10, 3: 1.20, 4: 1.30, 5: 1.80, 6: 3.50, 7: 13.00, 8: 50.00, 9: 250.00, 10: 1000.00 }
+    };
 
-    static Low = [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1.9, 0.2, 0.1, 0, 0, 0, 0, 0, 0, 0],
-        ['z', 3, 2.4, 1.2, 1, 1, 0.8, 0, 0, 0.5],
-        ['z', 'z', 11, 5, 4, 3, 2, 1.5, 1, 2],
-        ['z', 'z', 'z', 20, 10, 5, 2, 2, 1.5, 5],
-        ['z', 'z', 'z', 'z', 40, 35, 22, 10, 5, 10],
-        ['z', 'z', 'z', 'z', 'z', 100, 85, 40, 40, 20],
-        ['z', 'z', 'z', 'z', 'z', 'z', 250, 150, 100, 30],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 500, 400, 40],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 750, 50],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 100]
-    ]
-    static Medium = [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        ['z', 5, 2, 1, 0, 0, 0, 0, 0, 0],
-        ['z', 'z', 11, 5, 3, 2, 1, 1, 0, 0],
-        ['z', 'z', 'z', 20, 10, 5, 2, 2, 1, 0],
-        ['z', 'z', 'z', 'z', 40, 35, 22, 10, 5, 5],
-        ['z', 'z', 'z', 'z', 'z', 100, 85, 40, 40, 25],
-        ['z', 'z', 'z', 'z', 'z', 'z', 250, 150, 100, 120],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 500, 400, 200],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 750, 450],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 0]
-    ]
-    static High = [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        ['z', 5, 2, 1, 0, 0, 0, 0, 0, 0],
-        ['z', 'z', 11, 5, 3, 2, 1, 1, 0, 0],
-        ['z', 'z', 'z', 20, 10, 5, 2, 2, 1, 0],
-        ['z', 'z', 'z', 'z', 40, 35, 22, 10, 5, 5],
-        ['z', 'z', 'z', 'z', 'z', 100, 85, 40, 40, 25],
-        ['z', 'z', 'z', 'z', 'z', 'z', 250, 150, 100, 120],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 500, 400, 200],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 750, 450],
-        ['z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 'z', 200]
-    ]
-
+    static MediumRisk = {
+        1: { 0: 0.6, 1: 1.5 },
+        2: { 0: 0, 1: 1.8, 2: 3.5 },  
+        3: { 0: 0, 1: 1.0, 2: 1.35, 3: 26 },
+        4: { 0: 0, 1: 0, 2: 2.0, 3: 6.0, 4: 80 },
+        5: { 0: 0, 1: 0, 2: 1.4, 3: 3.5, 4: 9.0, 5: 280 },
+        6: { 0: 0, 1: 0, 2: 1.1, 3: 2.0, 4: 4.5, 5: 70, 6: 650 },
+        7: { 0: 0, 1: 0, 2: 1.0, 3: 1.7, 4: 3.0, 5: 11.0, 6: 170, 7: 800 },
+        8: { 0: 0, 1: 0, 2: 0.9, 3: 1.5, 4: 2.2, 5: 5.0, 6: 40, 7: 100, 8: 1000 },
+        9: { 0: 0, 1: 0, 2: 0.85, 3: 1.3, 4: 1.8, 5: 3.2, 6: 8.0, 7: 50, 8: 240, 9: 1100 },
+        10:{ 0: 0, 1: 0, 2: 0.8, 3: 1.2, 4: 1.6, 5: 2.3, 6: 4.5, 7: 16, 8: 65, 9: 300, 10: 1100 }
+    };
+    static HighRisk = {
+        1: { 0: 0.5, 1: 1.3 },
+        2: { 0: 0, 1: 1.6, 2: 3.2 },  
+        3: { 0: 0, 1: 0.9, 2: 1.2, 3: 30 },
+        4: { 0: 0, 1: 0, 2: 1.8, 3: 5.5, 4: 85 },
+        5: { 0: 0, 1: 0, 2: 1.2, 3: 3.0, 4: 8.0, 5: 290 },
+        6: { 0: 0, 1: 0, 2: 1.0, 3: 1.8, 4: 4.0, 5: 60, 6: 700 },
+        7: { 0: 0, 1: 0, 2: 0.9, 3: 1.5, 4: 2.8, 5: 10.0, 6: 150, 7: 850 },
+        8: { 0: 0, 1: 0, 2: 0.8, 3: 1.3, 4: 2.0, 5: 4.5, 6: 35, 7: 90, 8: 1050 },
+        9: { 0: 0, 1: 0, 2: 0.75, 3: 1.2, 4: 1.6, 5: 3.0, 6: 7.0, 7: 45, 8: 220, 9: 1175 },
+        10:{ 0: 0, 1: 0, 2: 0.7, 3: 1.1, 4: 1.4, 5: 2.0, 6: 4.0, 7: 14, 8: 60, 9: 280, 10: 1200 }
+    };
     constructor(parent){
         this.cont = null;
         this.betAmount = 1.00;
@@ -79,9 +75,6 @@ export class Keno{
         this.drawDescription(host);
 
         this.active = false;
-
-
-
     }
 
     drawForm(host){
@@ -168,8 +161,6 @@ export class Keno{
 
         totalProfitDisplay.innerHTML = this.currentProfit.toFixed(2);
 
-
-
         //buttonclear
 
         const buttonClearBox = document.createElement('div');
@@ -200,18 +191,11 @@ export class Keno{
         const self = this;
         riskSelekt.addEventListener('change', function(e){
             console.log(e.target.value);
+            //Recalc values
             self.recalculateReturnValues(e.target.value);
         })
         
-
-
-
-
-
-
         //Button
-
-
         const buttonBox = document.createElement('div');
         const buttonBet = document.createElement('button');
         buttonBox.classList.add('buttonBox')
@@ -219,9 +203,6 @@ export class Keno{
         form.appendChild(buttonBox);
         buttonBox.appendChild(buttonBet);
         buttonBet.innerHTML = "Bet";
-
-
-
 
         kenoButtonAutoSelect.onclick = (ev) =>{
             this.clearTable()
@@ -234,16 +215,16 @@ export class Keno{
             this.clearTable();  
         }
 
-
-
         buttonBet.onclick = (ev) =>{
             console.log(self.selected.length)
-            if(this.selected.length > 0)
-                self.initiateNewGame();
+            if(this.selected.length > 0){
+                let wager = parseFloat(this.cont.querySelector('.amountInput').value)
+                if(this.parent.reduceBalance(wager))
+                    self.initiateNewGame();
+            }
+            
         }
-
         
-
         bHalf.onclick = (ev) =>{
             if(this.betAmount != 0 && this.betAmount >= 0.5){
                 amountInput.value = (this.betAmount / 2).toFixed(2);
@@ -264,16 +245,12 @@ export class Keno{
         display.classList.add('display3')
         host.appendChild(display)
 
-        
-
         const kenoTilesHolder = document.createElement('div');
         kenoTilesHolder.classList.add('kenoTilesHolder');
         display.appendChild(kenoTilesHolder);
 
 
         for(let i =0;i < 40; i++){
-
-
             let kenoTileHolder = document.createElement('div');
             kenoTileHolder.classList.add("kenoTileHolder");
             kenoTilesHolder.appendChild(kenoTileHolder);
@@ -291,7 +268,6 @@ export class Keno{
             this.tiles.push({button: kenoTileButton, img: kenoTileImage});
             
             self = this;
-
 
             kenoTileButton.onclick = (ev) =>{
                 if(!this.selected.find(e=> e.button === kenoTileButton && e.img === kenoTileImage) && this.selected.length < 10){
@@ -315,7 +291,6 @@ export class Keno{
                         this.selected.splice(index, 1);
                     }
                     kenoTileButton.classList.remove('kenoTileButtonSelected');
-
 
                 }
                 if(this.selected.length == 10){
@@ -348,14 +323,16 @@ export class Keno{
         else{
             notSelected.forEach(e=> e.button.style.opacity='1');
         }
-  
-
     }
 
 
     updateBars(val){
+        console.log('POZVANO UPDATE BARS SA VAL' + val);
+        console.log("THIs.selected.elgnth:" + this.selected.length);
         const changeCount = val ? (this.selected.length === 0 ? 2 : 1) : (this.selected.length === 1 ? 2 : 1)
         for(let i = 0; i < changeCount; i++){
+            console.log("Pozvano change child" + changeCount + "puta");
+            // console.log(val);
             this.changeChild(val ? 'add' : 'remove')
         }
         if(this.numberOfClicked == 10){
@@ -364,50 +341,53 @@ export class Keno{
     }
     
     changeChild(op){
-        // console.log(this.numberOfClicked);
-        let upper = this.cont.querySelector(".displayLower1");
-        let lower = this.cont.querySelector(".displayLower2")
-        
+        const upper = this.cont.querySelector(".displayLower1");
+        const lower = this.cont.querySelector(".displayLower2")
+        let riskFactor = document.querySelector(".riskInput").value + "Risk";
+
+
         if(op == 'add' && this.selected.length < 10){
+            //Dodaje div za multiplier gore 
             let u = document.createElement('div');
             u.classList.add('dl1')
             upper.appendChild(u);
+
+            //Brise placeholder "select 1-10 numbers"
             if(this.count==0){
                 lower.replaceChildren();
             }
             
-            
-            let u2 = document.createElement('img');
-            u2.src = "./Images/Keno/star.png"//sak
-            u2.classList.add('dlImg')
-            
-            
-            u = document.createElement('div')
-            u.classList.add('dl2Txt')
-            u.innerHTML = "" + this.count + "x";
+            //Dodaje div sa zvezdicom dole
+            const starContainer = document.createElement('div');
+            starContainer.classList.add('dl2');
 
-
-            let x = document.createElement('div');
-            x.classList.add('dl2');
+            const starContainerImage = document.createElement('img');
+            starContainerImage.src = "./Images/Keno/star.png"
+            starContainerImage.classList.add('dlImg')
             
-            x.appendChild(u)
-            x.appendChild(u2)
+            const starContainerText = document.createElement('div')
+            starContainerText.classList.add('dl2Txt')
+            starContainerText.innerHTML = "" + this.count + "x";
 
-            lower.appendChild(x);
-            
+            starContainer.append(starContainerText,starContainerImage);
+            lower.appendChild(starContainer);
+                        
+            //Menja vrednosti multiplier divova
             upper.childNodes.forEach((e, index) => {
-                let payout = (index / (this.selected.length+1)) * Keno.Low[index][this.selected.length];
-
-                e.innerHTML = payout.toFixed(1);
+                if(this.count != 0){
+                    e.innerHTML = Keno[riskFactor][this.count][index].toFixed(2) + "x";
+                }
             })
-
             this.count++;
+            console.log("COUNT:" + this.count)
         }
         else if(op == 'remove'){
+
             upper.childNodes.forEach((e, index) => {
                 // console.log(index + "-" + this.count)
-                let payout = (index / this.selected.length) * Keno.Low[index][this.selected.length-1];
-                e.innerHTML = payout.toFixed(1);
+                if(this.count >0 && this.count <= 10){
+                    e.innerHTML = Keno[riskFactor][this.count][index].toFixed(2) + "x";
+                }
             })
             upper.removeChild(upper.lastElementChild);
             lower.removeChild(lower.lastElementChild);
@@ -422,11 +402,15 @@ export class Keno{
     }
 
     recalculateReturnValues(val){
+        let riskFactor = val + "Risk";
+        console.log(riskFactor);
         let upper = this.cont.querySelector(".displayLower1");
-
         upper.childNodes.forEach((e, index) => {
-            let payout = (index / this.selected.length) * Keno[val][index][upper.childNodes.length - 2];
-            e.innerHTML = payout.toFixed(2);
+            console.log(this.count);
+            console.log(this.count > 0 && this.count <= 11);
+            if(this.count >0 && this.count <= 11){
+                e.innerHTML = Keno[riskFactor][this.count-1][index].toFixed(2) + "x";
+            }
         })
     }
 
@@ -466,7 +450,6 @@ export class Keno{
 
 
     autoSelect(){
-        
         if(this.selected.length == 10){
              this.selected.forEach(m => {
                  m.button.classList.remove('hidden');
@@ -492,65 +475,51 @@ export class Keno{
         });
 
     }
-
+//////////////////////////////////////////////////////////////////////////////
     initiateNewGame(){
+        this.resetTiles(this.selected);
+        this.resetTiles(this.randomPicked);
 
-        this.selected.forEach(m => {
-            m.button.classList.remove('hidden');
-            m.img.classList.remove('visible');
-            m.img.classList.remove('end');
-            m.button.classList.remove('end')
-        })
-
-        this.randomPicked.forEach(m=>{
-            m.button.parentNode.classList.remove("borderadd");
-            m.button.classList.remove('hidden');
-            m.img.classList.remove('visible');
-            m.button.parentNode.classList.remove("increaseFont")
-        })
-        this.randomPicked.length = 0;
+        // this.randomPicked.length = 0;
+        // this.count = 0;
         this.numberOfHits = 0;
-        this.count = 0;
-        this.reloadLower();
+        this.updateNumberOfHits();
 
-        let notSelected = this.cont.querySelectorAll('.kenoTileButton:not(.kenoTileButtonSelected)')
-        notSelected.forEach( e=> e.style.opacity = '0.5');
+        this.tiles.filter(t => !this.selected.includes(t)).forEach(t=>t.button.style.opacity = '0.5');
+        
         let amountInput = this.cont.querySelector(".amountInput").value;
-        this.betAmount = parseFloat(amountInput).toFixed(2);
-        this.parent.balance -= this.betAmount;
-
-
-
+        this.betAmount = Number(parseFloat(amountInput).toFixed(2));
 
         this.buttonState(true);
+        let riskFactor = document.querySelector(".riskInput").value + "Risk";
 
         this.openTiles().then(() => {
             this.buttonState(false);
             setTimeout(()=>{
-
-                
-                console.log(this.numberOfHits);
-                console.log(this.selected.length-1)
-                let payout = (this.numberOfHits/this.selected.length) * Keno.Low[this.numberOfHits][this.selected.length-1]
+                console.log(this.selected.length)
+                let payout = this.betAmount * Keno[riskFactor][this.selected.length][this.numberOfHits]
                 console.log(payout);
                 this.parent.balance += payout;
+                
             },600)
         });
-
-
     }
+
+
+    resetTiles(tiles){
+        tiles.forEach(t => {
+            t.button.classList.remove('hidden', 'end');
+            t.img.classList.remove('visible', 'end');
+            t.button.parentNode.classList.remove("borderadd", "increaseFont");
+        });
+    }
+
+
 
     openTiles(){
         let promises = [];
         for (let i = 0; i < 10; i++) {
-            promises.push(
-                new Promise((resolve) => {
-                    setTimeout(() => {
-                        this.openTile();
-                        resolve();
-                    }, 250 * i);
-                })
-            );
+            promises.push(new Promise(resolve => setTimeout(() => resolve(this.openTile()), 250 * i)));
         }
         return Promise.all(promises);
     }
@@ -568,8 +537,9 @@ export class Keno{
         let kenoTileButton = this.tiles[rnd].button;
         let kenoTileImage = this.tiles[rnd].img;
         
-        
         kenoTileButton.classList.add('animating')
+
+        //Ukoliko je izabrano dugme pogodak
         if(this.selected.find(obj => obj.button === kenoTileButton)){
             let lower = this.cont.querySelector(".displayLower2")
             setTimeout(() => {
@@ -577,10 +547,8 @@ export class Keno{
                 kenoTileButton.classList.add('hidden'); // Nestani dugme
             }, 200); // Trajanje animacije rasta
             setTimeout(()=>{
-                let sound = document.createElement('audio');
-                sound.src = "./Sound/Keno/hit.mp3";
-                sound.volume = 0.2;
-                sound.play();
+                this.playSound("./Sound/Keno/hit.mp3");
+
                 kenoTileImage.classList.add('animating')
             },400);
             setTimeout(()=>{
@@ -588,37 +556,37 @@ export class Keno{
                 kenoTileImage.classList.remove('animating')
                 kenoTileImage.classList.add('visible')
                 this.numberOfHits++;
-                
-                this.reloadLower();
-
+                this.updateNumberOfHits();
                 
             },600);
         }
-        else{
+        else{//Ukoliko je izabrano dugme promasaj
             kenoTileButton.parentNode.classList.add("increaseFont");
             setTimeout(() => {
                 kenoTileButton.classList.remove('animating');
                 kenoTileButton.classList.add('hidden'); // Nestani dugme
-                let sound = document.createElement('audio');
-                sound.src = "./Sound/Keno/err.mp3";
-                sound.playbackRate = 1.5;
-                sound.volume = 0.2;
-                sound.play();
+                this.playSound("./Sound/Keno/err.mp3");
             }, 200);
         }
         if(this.randomPicked.length == 10){
-            
             setTimeout(()=>{
                 console.log(this.randomPicked.length)
                 this.tiles.forEach(t=>{
-                    
                     t.button.style.opacity='1';
                 })
             }, 800)
         }
     }
 
-    reloadLower(){
+    playSound(src, volume = 0.2, rate = 1) {
+        let sound = new Audio(src);
+        sound.volume = volume;
+        sound.playbackRate = rate;
+        sound.play();
+    }
+
+
+    updateNumberOfHits(){//Kada se hituje pravo polje, treba da sija div sa toliko z
         let lower = this.cont.querySelector(".displayLower2")
 
         lower.childNodes.forEach(e=>{
@@ -642,7 +610,7 @@ export class Keno{
                     setTimeout(() => {
                         console.log(`Executing pickRandom at index ${i}, time: ${performance.now()}`);
 
-                        this.pickRandom();
+                        this.pickRandomTile();
                         resolve();
                     }, 80 * i);
                 })
@@ -653,9 +621,7 @@ export class Keno{
 
     
 
-    
-
-    buttonState(v){
+    buttonState(state){//true/false
 
         let amountInput = this.cont.querySelector(".amountInput");
         let bDouble = this.cont.querySelector(".bDouble")
@@ -666,19 +632,18 @@ export class Keno{
         let buttonBet = this.cont.querySelector(".buttonBet")
 
         
-        amountInput.disabled = v
-        riskInput.disabled = v
-        clearButton.disabled = v
-        bDouble.disabled = v
-        bHalf.disabled = v
-        autoPickButton.disabled = v
-        buttonBet.disabled = v
+        amountInput.disabled    = state
+        riskInput.disabled      = state
+        clearButton.disabled    = state
+        bDouble.disabled        = state
+        bHalf.disabled          = state
+        autoPickButton.disabled = state
+        buttonBet.disabled      = state
 
     }
 
 
-    pickRandom(){
-
+    pickRandomTile(){
         let rnd;
         do{
             rnd = Math.floor(Math.random() * 40);
@@ -696,12 +661,7 @@ export class Keno{
     endGame(result){
         
     }
-
-    recalculateProfit(){
-
-
-    }
-
+    
     //
     drawFoot(host){
         const gameFoot = document.createElement('div');
